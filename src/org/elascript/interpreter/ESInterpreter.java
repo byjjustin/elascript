@@ -8,9 +8,9 @@ import org.elascript.ast.*;
 import org.elascript.runtime.*;
 import org.elascript.symbol.*;
 
-
 public class ESInterpreter extends ASTVisitor<Result, InterpretingException>
 		implements Interpreter {
+	private MemorySpace global;
 	private MemorySpace current;
 	private SecurityChecker checker;
 
@@ -265,7 +265,8 @@ public class ESInterpreter extends ASTVisitor<Result, InterpretingException>
 
 	@Override
 	protected Result visit(Program ast) throws InterpretingException {
-		current = new MemorySpace(ast.getScope(), this);
+		global = new MemorySpace(ast.getScope(), this);
+		current = global;
 		visitSeqStatements(ast.getStatements());
 		return VoidResult.INSTANCE;
 	}
@@ -314,5 +315,10 @@ public class ESInterpreter extends ASTVisitor<Result, InterpretingException>
 		for (Expression expr : exprs)
 			args.add(visit(expr).asValue());
 		return args.toArray();
+	}
+
+	@Override
+	public MemorySpace getGlobalEnvironment() {
+		return global;
 	}
 }
