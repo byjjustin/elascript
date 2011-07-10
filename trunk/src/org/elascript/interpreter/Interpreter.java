@@ -8,4 +8,6 @@ public interface Interpreter {
 
 	public abstract Object execute(Function ast, MemorySpace env, Object[] args)
 			throws FunctionCallException, InterpretingException;
+	
+	public MemorySpace getGlobalEnvironment();
 }
