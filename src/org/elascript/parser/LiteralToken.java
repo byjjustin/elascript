@@ -4,7 +4,7 @@ public class LiteralToken extends Token {
 	private Object literal;
 
 	public LiteralToken(Object literal) {
-		super(literal.toString());
+		super(literal == null ? "null" : literal.toString());
 		this.literal = literal;
 	}
 
