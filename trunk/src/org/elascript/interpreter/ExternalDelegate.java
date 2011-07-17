@@ -17,7 +17,7 @@ public class ExternalDelegate extends Delegate {
 	}
 
 	@Override
-	public Object execute(Object[] args) throws FunctionCallException {
+	public Object execute(Object... args) throws FunctionCallException {
 		try {
 			return TypeHelper.matchMethod(type, target, args).invoke(instance,
 					args);
