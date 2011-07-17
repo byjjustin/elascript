@@ -16,7 +16,7 @@ public class InternalDelegate extends Delegate {
 	}
 
 	@Override
-	public Object execute(Object[] args) throws FunctionCallException,
+	public Object execute(Object... args) throws FunctionCallException,
 			InterpretingException {
 		return env.getInterpreter().execute(ast, env, args);
 	}
