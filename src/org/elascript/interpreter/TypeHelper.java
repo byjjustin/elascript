@@ -91,7 +91,8 @@ final class TypeHelper {
 				types[i] = boolean.class;
 			else if (args[i] instanceof Void)
 				types[i] = void.class;
-			types[i] = args[i].getClass();
+			else
+				types[i] = args[i].getClass();
 		}
 		return types;
 	}
